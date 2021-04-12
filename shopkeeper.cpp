@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <cctype>
+#include <iostream>
 
 int shopkeeper::set_name(std::string new_name)
 {
@@ -155,4 +156,65 @@ void shopkeeper::rm_department(std::string department)
             departments.erase(i);
         }
     }
+}
+
+
+void shopkeeper::rm_all_departments()
+{
+    departments.clear();
+}
+
+
+bool shopkeeper::operator!=(const shopkeeper &sk) const
+{
+    if(this == &sk)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+
+bool shopkeeper::operator==(const shopkeeper &sk) const
+{
+    if(name == sk.name || surname == sk.surname)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+
+shopkeeper& shopkeeper::operator=(const shopkeeper& sh)
+{
+    name = sh.name;
+    surname = sh.surname;
+    permission = sh.permission;
+    salary = sh.salary;
+    experience = sh.experience;
+    rm_all_departments();
+    for(auto i = sh.departments.begin(); i!=sh.departments.end(); ++i)
+    {
+        add_department(*i);
+    }
+    return *this;
+}
+
+
+std::ostream& operator<<(std::ostream &os,shopkeeper &sk)
+{
+    std::string the_departments = *sk.departments.begin();
+    for(auto i = sk.departments.begin()+1; i!=sk.departments.end(); ++i)
+    {
+        the_departments += *i;
+    }
+    os<<"Name and surname: "<<sk.name<<" "<<sk.surname<<"\nPermission level: "<<sk.permission<<"\nExperience: "
+    <<sk.experience<<" days"<<"\nSalary: "<<sk.salary<<" PLN"<<"\nAssigned departments: "<<the_departments<<"\n";
+    return os;
 }

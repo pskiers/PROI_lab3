@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 class shopkeeper
 {
@@ -29,5 +30,12 @@ public:
     std::vector <std::string> get_departments(){return departments;}
     void add_department(std::string department);
     void rm_department(std::string department);
+    void rm_all_departments();
+    bool operator==(const shopkeeper &sk) const;
+    bool operator!=(const shopkeeper &sk) const;
+    shopkeeper& operator=(const shopkeeper& sh);
+
+    friend
+    std::ostream& operator<< (std::ostream &os,shopkeeper &sk);
 };
 #endif
