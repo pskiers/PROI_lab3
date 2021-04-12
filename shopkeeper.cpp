@@ -167,7 +167,7 @@ void shopkeeper::rm_all_departments()
 
 bool shopkeeper::operator!=(const shopkeeper &sk) const
 {
-    if(this == &sk)
+    if(*this == sk)
     {
         return false;
     }
