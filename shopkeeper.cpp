@@ -209,10 +209,11 @@ shopkeeper& shopkeeper::operator=(const shopkeeper& sh)
 
 std::ostream& operator<<(std::ostream &os,shopkeeper &sk)
 {
-    std::string the_departments = *sk.departments.begin();
-    for(auto i = sk.departments.begin()+1; i!=sk.departments.end(); ++i)
+    std::string the_departments = "";
+    for(auto i = sk.departments.begin(); i!=sk.departments.end(); ++i)
     {
         the_departments += *i;
+        the_departments += ", ";
     }
     os<<"Name and surname: "<<sk.name<<" "<<sk.surname<<"\nPermission level: "<<sk.permission<<"\nExperience: "
     <<sk.experience<<" days"<<"\nSalary: "<<sk.salary<<" PLN"<<"\nAssigned departments: "<<the_departments<<"\n";
